@@ -10,10 +10,12 @@ package projekt.backend;
 public class Wire {	
 	private Port port_start;	//zacatek
 	private Port port_end;		//konec	
+	private String id;
 	
 	public Wire() {
 			port_start = null;
-			port_end = null;	
+			port_end = null;
+			id = null;
 	}
 
 	/** Propoji porty 
@@ -42,6 +44,7 @@ public class Wire {
 		port_start=in;
 		port_end=out;
 		port_start.connect=port_end.connect=true;
+		id=port_start.see_parent().see_name()+"-"+port_end.see_parent().see_name();
 		return true;
 	}
 	
@@ -63,5 +66,9 @@ public class Wire {
 		return port_end;
 	}
 	
+	public String see_id()
+	{
+		return id;
+	}
 }
 

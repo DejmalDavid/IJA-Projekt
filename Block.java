@@ -79,7 +79,12 @@ public abstract class Block {
 		return port_out; 		
 	}
 	
-
+	public Port[] return_start_ports()
+	{
+		return port_in; 		
+	}
+	
+	
 	public abstract void operace();
 	
 	public int hashCode() {

@@ -4,9 +4,9 @@ package projekt.backend;
  * @author David Dejmal (xdejma00)
  * soucet dvou hodnot stejneho zadaneho typu
  */
-public class Block_soucet extends Block{
+public class Block_rozdil extends Block{
 
-    public Block_soucet(String name,int poradi,hodnoty typ) {
+    public Block_rozdil(String name,int poradi,hodnoty typ) {
         super(name,poradi);
 
         port_in = new Port[2];	//mnozstvi in/out portu
@@ -23,7 +23,7 @@ public class Block_soucet extends Block{
      */
     public void operace()
     {
-        double result= port_in[0].see_hodnota() + port_in[1].see_hodnota();
+        double result= port_in[0].see_hodnota() - port_in[1].see_hodnota();
         port_out[0].set_hodnota(result);
     }
 }
