@@ -1,5 +1,7 @@
 package projekt.backend;
 
+import java.io.Serializable;
+
 /** Predstavuje propoj mezi bloky
  * 
  * Tyto propoje budou ulozeny v globalnim kontejneru
@@ -7,7 +9,11 @@ package projekt.backend;
  * 
  * @author David Dejmal (xdejma00)
  */
-public class Wire {	
+public class Wire  implements Serializable{	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Port port_start;	//zacatek
 	private Port port_end;		//konec	
 	private String id;

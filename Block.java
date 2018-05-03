@@ -1,9 +1,11 @@
 package projekt.backend;
 
+import java.io.Serializable;
+
 /** Obecny blok
  * @author David Dejmal (xdejma00)
  */
-public abstract class Block {
+public abstract class Block implements Serializable {
 
 	private String name;
 	protected Port port_in[];	

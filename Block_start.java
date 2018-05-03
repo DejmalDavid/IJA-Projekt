@@ -1,6 +1,12 @@
-package projekt.backend;
+package projekt.backend.bloky;
 
-public class Block_start extends Block {
+import java.io.Serializable;
+
+import projekt.backend.Block;
+import projekt.backend.Port;
+import projekt.backend.Port.hodnoty;
+
+public class Block_start extends Block implements Serializable {
 	
 	private double hodnota;
 	

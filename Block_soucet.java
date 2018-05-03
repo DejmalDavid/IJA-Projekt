@@ -1,10 +1,16 @@
-package projekt.backend;
+package projekt.backend.bloky;
+
+import java.io.Serializable;
+
+import projekt.backend.Block;
+import projekt.backend.Port;
+import projekt.backend.Port.hodnoty;
 
 /**
  * @author David Dejmal (xdejma00)
  * soucet dvou hodnot stejneho zadaneho typu
  */
-public class Block_soucet extends Block{
+public class Block_soucet extends Block implements Serializable{
 
     public Block_soucet(String name,int poradi,hodnoty typ) {
         super(name,poradi);

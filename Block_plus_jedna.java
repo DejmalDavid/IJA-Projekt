@@ -1,10 +1,20 @@
-package projekt.backend;
+package projekt.backend.bloky;
 
+import java.io.Serializable;
+
+import projekt.backend.Block;
+import projekt.backend.Port;
+import projekt.backend.Port.hodnoty;
 /** Pokusna trida pro ucel 2.ukolu
  * 
  * @author David Dejmal (xdejma00)
  */
-public class Block_plus_jedna extends Block{
+public class Block_plus_jedna extends Block implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public Block_plus_jedna(String name,int poradi) {
 		super(name,poradi);	

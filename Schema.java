@@ -1,11 +1,16 @@
 package projekt.backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class Schema {
-      private ArrayList<Block> bloky;
+import projekt.backend.Port.hodnoty;
+import projekt.backend.bloky.*;
+
+
+public class Schema implements Serializable{
+	private ArrayList<Block> bloky;
       private HashSet<Wire> propoje ;
       private String jmeno;
       private Integer krok;

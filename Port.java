@@ -1,16 +1,26 @@
 package projekt.backend;
 
+import java.io.Serializable;
+
 /** Trida simulujici port
  * 
  * @author David Dejmal (xdejma00)
  */
-public class Port {
+public class Port  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Block parent;	
 	private String nazev;
 	private hodnoty typ;
 	protected boolean connect;		//verejny propoj
 	private double hodnota;
-	
+	public enum hodnoty {
+		 Metr,	//delka v metrech
+		 Metr_2,	// plocha v ctverecnich metrech
+		 Metr_3	//objem v metrech krychlovych
+		};
 	
 	/**Nastaveni portu
 	 * @param Rodicovsky block
