@@ -6,6 +6,12 @@ import projekt.backend.Block;
 import projekt.backend.Port;
 import projekt.backend.Port.hodnoty;
 
+/**
+ * 
+ * @author David Dejmal
+ *
+ *vstupni blok
+ */
 public class Block_start extends Block implements Serializable {
 	
 	private double hodnota;
@@ -24,8 +30,7 @@ public class Block_start extends Block implements Serializable {
 
     /** Vypocet blocku
      *
-     * Tato operace musi zarucit ze na kazdy vystupni port bude pridelena hodnota!!!
-     *
+     *Hodnotu v konstruktoru propaguje na vystup
      */
     public void operace()
     {

@@ -10,18 +10,15 @@ import java.io.Serializable;
  * @author David Dejmal (xdejma00)
  */
 public class Wire  implements Serializable{	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	private Port port_start;	//zacatek
 	private Port port_end;		//konec	
-	private String id;
+	private String name;
 	
 	public Wire() {
 			port_start = null;
 			port_end = null;
-			id = null;
+			name = null;
 	}
 
 	/** Propoji porty 
@@ -50,7 +47,7 @@ public class Wire  implements Serializable{
 		port_start=in;
 		port_end=out;
 		port_start.connect=port_end.connect=true;
-		id=port_start.see_parent().see_name()+"-"+port_end.see_parent().see_name();
+		name=port_start.see_parent().see_name()+"-"+port_end.see_parent().see_name();
 		return true;
 	}
 	
@@ -72,9 +69,13 @@ public class Wire  implements Serializable{
 		return port_end;
 	}
 	
-	public String see_id()
+	/**Vraci jmeno propoje
+	 * 
+	 * @return jmeno
+	 */
+	public String see_name()
 	{
-		return id;
+		return name;
 	}
 }
 

@@ -7,10 +7,7 @@ import java.io.Serializable;
  * @author David Dejmal (xdejma00)
  */
 public class Port  implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	private Block parent;	
 	private String nazev;
 	private hodnoty typ;

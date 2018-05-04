@@ -5,13 +5,14 @@ import java.io.Serializable;
 import projekt.backend.Block;
 import projekt.backend.Port;
 import projekt.backend.Port.hodnoty;
+
 /**
  * @author David Dejmal (xdejma00)
  * soucet dvou hodnot stejneho zadaneho typu
  */
-public class Block_rozdil extends Block implements Serializable{
+public class Block_soucin extends Block implements Serializable{
 
-    public Block_rozdil(String name,int poradi,hodnoty typ) {
+    public Block_soucin(String name,int poradi,hodnoty typ) {
         super(name,poradi);
 
         port_in = new Port[2];	//mnozstvi in/out portu
@@ -24,11 +25,11 @@ public class Block_rozdil extends Block implements Serializable{
     }
 
     /** Vypocet blocku
-     * rozdil dvou vstupu a propagace na vystupy
+     * soucin dvou vstupu a propagace na vystupy
      */
     public void operace()
     {
-        double result= port_in[0].see_hodnota() - port_in[1].see_hodnota();
+        double result= port_in[0].see_hodnota() * port_in[1].see_hodnota();
         port_out[0].set_hodnota(result);
     }
 }

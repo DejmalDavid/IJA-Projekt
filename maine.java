@@ -47,9 +47,15 @@ public class maine {
 		plan1.step_demo();
 		plan1.help_vypis();
 		
+		Wire help;
+		help=plan1.find_wire("jedna-dva");
+		System.out.println("hodnota spoje jedna-dva :"+help.start().see_hodnota());
 		//mazani
 		plan1.delete_propoj("jedna-dva");
 		plan1.delete_blok("tri");
+		
+		//najdu spoj a vypisu jeho hodnotu
+
 		
 		//kontrola vstupu
 		plan1.all_connect();
@@ -65,11 +71,16 @@ public class maine {
 		
 		}
 	
+	/**ulozi schema do souboru
+	 * 
+	 * @param uloz schema k ulozeni
+	 * @param name jmeno souboru bez pripony
+	 */
 	static private void save(Schema uloz,String name)
 	{
 		try 
 		{
-			File soubor = new File(name);
+			File soubor = new File(name+".schema");
 			FileOutputStream f = new FileOutputStream(soubor);
 			ObjectOutputStream o = new ObjectOutputStream(f);
 
@@ -90,13 +101,18 @@ public class maine {
 	 
 		}
 	}
+	/**nacte schema do promene
+	 * 
+	 * @param name jmeno souboru bez pripony
+	 * @return nactene schema
+	 */
 	static private Schema load(String name)
 	{
 		Schema result;
 		try 
 		{
 			
-			FileInputStream fi = new FileInputStream(new File(name));
+			FileInputStream fi = new FileInputStream(new File(name+".schema"));
 			ObjectInputStream oi = new ObjectInputStream(fi);
 
 			// Read objects

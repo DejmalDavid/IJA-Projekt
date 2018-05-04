@@ -28,12 +28,22 @@ public abstract class Block implements Serializable {
 		return name;
 	}
 	
+	/**Vraci poradi bloku ve schematu (index)
+	 * 
+	 * @return poradi
+	 */
 	public Integer see_poradi()
 	{
 		return poradi;
 	}
 	
-	public void set_poradi(int poradi)
+	/**Nastavi poradi bloku
+	 * 
+	 * Vyuziva pouze funkce schema.swap()
+	 * 
+	 * @param poradi
+	 */
+	protected void set_poradi(int poradi)
 	{
 		this.poradi=poradi;
 	}
@@ -81,6 +91,10 @@ public abstract class Block implements Serializable {
 		return port_out; 		
 	}
 	
+	/**Vraci pole vstupnich portu
+	 * 
+	 * @return pole vstupnich portu
+	 */
 	public Port[] return_start_ports()
 	{
 		return port_in; 		
@@ -89,8 +103,9 @@ public abstract class Block implements Serializable {
 	
 	public abstract void operace();
 	
+	
 	public int hashCode() {
-		return poradi.hashCode();	
+		return poradi.hashCode();	//poradi je jedinecne vramci shematu
 	}
 	
 	public boolean equals(Object obj)
