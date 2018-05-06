@@ -1,0 +1,27 @@
+<project name="IJA - projekt" basedir=".">
+		
+
+    <target name="clean">
+        <delete dir="build"/>
+		<delete dir="dest-client"/>
+		<delete dir="doc"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build"/>
+        <javac srcdir="src" destdir="build"/>
+		<mkdir dir="dest-client"/>
+        <jar destfile="dest-client/ija-client.jar" basedir="build">
+            <manifest>
+                <attribute name="Main-Class" value="projekt.Frontend.Main"/>
+            </manifest>
+        </jar>
+		<mkdir dir="doc"/>
+		<javadoc sourcepath="src" destdir="doc"/>
+    </target>
+
+    <target name="run">
+        <java jar="dest-client/ija-client.jar" fork="true"/>
+    </target>
+
+</project>

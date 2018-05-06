@@ -1,0 +1,8 @@
+start 10.0 Metr -7.0 118.0 7 0
+obdelnik 304.0 141.0 8 1
+koule 629.0 130.0 9 2
+kvadr 471.0 337.0 10 3
+wire 7 8 vystup-1 vstup-1 19 22
+wire 8 9 vystup-1 vstup-1 20 25
+wire 9 10 vystup-1 vstup-1 24 29
+wire 10 8 vystup-1 vstup-2 28 23

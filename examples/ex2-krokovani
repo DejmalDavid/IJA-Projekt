@@ -1,0 +1,13 @@
+start 10.0 Metr 0.0 0.0 0 0
+start 10.0 Metr 2.0 207.0 1 1
+soucet 284.0 137.0 2 2
+rozdil 597.0 121.0 3 4
+start 66.0 Metr 332.0 -37.0 5 3
+soucin 908.0 103.0 6 6
+start 20.0 Metr 665.0 303.0 7 5
+wire 0 2 vystup-1 vstup-1 1 4
+wire 1 2 vystup-1 vstup-2 2 5
+wire 5 3 vystup-1 vstup-1 10 7
+wire 2 3 vystup-1 vstup-2 3 8
+wire 7 6 vystup-1 vstup-2 14 13
+wire 3 6 vystup-1 vstup-1 6 12
