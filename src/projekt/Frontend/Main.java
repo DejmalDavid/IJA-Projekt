@@ -43,6 +43,7 @@ public class Main extends Application{
     public static AnchorPane root;
     public static Integer id;
     public static Schema plan1;
+    private Label scheme_name;
         @Override
         public void start(Stage primaryStage) {
 
@@ -64,7 +65,7 @@ public class Main extends Application{
             if (result.isPresent()) {
                 name = result.get();
             }
-            Label scheme_name = new Label(name);
+            scheme_name = new Label(name);
             scheme_name.setFont(new Font("Serif", 32));
             root.getChildren().add(scheme_name);
             root.setTopAnchor(scheme_name, 10.0);
