@@ -150,6 +150,17 @@ public class Main extends Application{
      */
     public void new_scheme(){
 
+        String name = "";
+        TextInputDialog dialog = new TextInputDialog("Schema1");
+        dialog.setTitle("Nazev schematu");
+        dialog.setHeaderText("Nazev schematu");
+        dialog.setContentText("Nazev schematu:");
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            name = result.get();
+        }
+        scheme_name.setText(name);
+
             for (GBlock block : blockList){
                 plan1.delete_blok(block.see_matchblock().see_name());
                 root.getChildren().remove(block);
