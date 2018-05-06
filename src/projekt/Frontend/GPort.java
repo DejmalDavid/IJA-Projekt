@@ -62,7 +62,8 @@ public class GPort extends Label{
                         Wire match_wire = Main.plan1.find_wire(tmp1.see_matchblock().see_name()+"-"+tmp2.see_matchblock().see_name());
                         GWire wire = new GWire(port, tmp, match_wire);
                         AnchorPane st = (AnchorPane) (tmp.getParent().getParent());
-                        st.getChildren().add(wire);}
+                        st.getChildren().add(wire);
+                    }
                         port.setUnchecked();
                         propojeno = true;
 

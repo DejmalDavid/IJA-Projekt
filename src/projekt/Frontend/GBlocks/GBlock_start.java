@@ -30,8 +30,8 @@ public class GBlock_start extends GBlock{
     public double start_hodnota;
     public hodnoty unit;
 
-    public GBlock_start() {
-        super();
+    public GBlock_start(int id) {
+        super(id);
         Main.id += 1;
         double hodnota = 0;
 
@@ -60,10 +60,10 @@ public class GBlock_start extends GBlock{
 
         start_hodnota = hodnota;
         unit = jednotka;
-        if(Main.plan1.add_start_block(Main.id.toString(), hodnota, jednotka)) {
+        if(Main.plan1.add_start_block(Integer.toString(id), hodnota, jednotka)) {
 
 
-            block = Main.plan1.find_block(Main.id.toString());
+            block = Main.plan1.find_block(Integer.toString(id));
             op = new Label("Start");
             value = new Label(String.valueOf(hodnota));
             port_out1 = new GPort(jednotka.toString(), block.return_end_ports()[0]);
@@ -77,14 +77,14 @@ public class GBlock_start extends GBlock{
         /*Following part is same for all blocks*/
     }
 
-    public GBlock_start(double transx, double transy, double start_value, hodnoty start_unit){
-        super();
+    public GBlock_start(double transx, double transy, double start_value, hodnoty start_unit, int id){
+        super(id);
         Main.id += 1;
         start_hodnota = start_value;
         unit = start_unit;
-        if(Main.plan1.add_start_block(Main.id.toString(), start_value, start_unit)) {
+        if(Main.plan1.add_start_block(Integer.toString(id), start_value, start_unit)) {
 
-            block = Main.plan1.find_block(Main.id.toString());
+            block = Main.plan1.find_block(Integer.toString(id));
             op = new Label("Start");
             value = new Label(String.valueOf(start_value));
             port_out1 = new GPort(start_unit.toString(), block.return_end_ports()[0]);

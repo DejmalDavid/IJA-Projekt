@@ -27,7 +27,7 @@ public class maine {
 		plan1.add_propoj("dva", "vystup-1", "tri","vstup-1");
 		plan1.add_propoj("ctyri", "vystup-1", "tri","vstup-2");
 		//test swap
-		plan1.swap_items(3, 4);
+		//plan1.swap_items(3, 4);
 		//kontrola
 		if(plan1.have_cykles())
 		{

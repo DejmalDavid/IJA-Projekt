@@ -3,6 +3,7 @@ package projekt.backend;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 
 import projekt.backend.Port.hodnoty;
@@ -39,13 +40,31 @@ public class Schema implements Serializable{
       
       /**Nastavi jmeno schematu
        * 
-       * @param name
+       * @param name jmeno schematu
        */
       public void set_name(String name)
       {
     	  jmeno=name;
       }
-      
+
+	/**
+	 * Aktualizuje poradi jednotlivych bloku podle poradniku
+	 */
+      public void poradi_refresh(){
+      	for (Block block : bloky){
+      		block.set_poradi(bloky.indexOf(block));
+		}
+	  }
+
+	  public void poradnik_refresh(){
+      	Collections.sort(bloky, new Comparator<Block>() {
+			@Override
+			public int compare(Block o1, Block o2) {
+				return o1.see_poradi().compareTo(o2.see_poradi());
+			}
+		});
+	  }
+
       /**Vyhleda blok
        * 
        * @param name - jmeno bloku
@@ -264,25 +283,26 @@ public class Schema implements Serializable{
           }
       }
       
-      /**Prohodi poradi bloku
-       * 
-       * @param a poradi 1. bloku
-       * @param b poradi 2. bloku
-       * @return false spatne indexy
-       */
-      public boolean swap_items(int a,int b)
-      {
-    	  try {
-              Collections.swap(bloky, a, b);
-              bloky.get(a).set_poradi(a);
-              bloky.get(b).set_poradi(b); 
-    	  }
-          catch(IndexOutOfBoundsException e)
-    	  {
-        	  return false;
-    	  }
-          return true;
-      }
+
+	/**Prohodi poradi bloku
+	 *
+	 * @param a 1. blok
+	 * @param b 2. blok
+	 * @return true pri uspechu
+	 */
+	public boolean swap_items(Block a,Block b)
+	{
+		Collections.swap(bloky, a.see_poradi(), b.see_poradi());
+		int tmp1 = a.see_poradi();
+		int tmp2 = b.see_poradi();
+		a.set_poradi(tmp2);
+		b.set_poradi(tmp1);
+		System.out.println(a.see_poradi());
+		System.out.println(b.see_poradi());
+		System.out.println(bloky.indexOf(a));
+		System.out.println(bloky.indexOf(b));
+		return true;
+	}
       
       /**Kontroluje smycky v schmeatu
        * 
@@ -308,6 +328,8 @@ public class Schema implements Serializable{
          				help=propoj.end();
          				if( objekt.see_poradi() >= help.see_parent().see_poradi() )	//musi sedet poradi bloku
          				{
+         					System.out.println(objekt);
+							System.out.println(help.see_parent());
          					 System.out.println("Chyba");
          					 return true;
          				}     			
@@ -323,37 +345,42 @@ public class Schema implements Serializable{
        * 
        * @return vypocet daneho kroku se nezdaril (Nan)
        */
-      public boolean step_demo()
-      {
-    	  Port help;
-    	  double hodnota;
-    	  Block objekt = bloky.get(krok);
-    	  krok=krok+1;
-    	  objekt.operace();		//nastavi vypoctenou hodnotu na vystupni porty
-    	  System.out.println(objekt.see_name()+" : "+ objekt.see_poradi());
-    	  for(Port port : objekt.return_end_ports())	//projde vsechny vystupni porty objektu
-    	  {
-    	    		 hodnota=port.see_hodnota();
-    	    		 if(Double.isNaN(hodnota))	//NAN je spatne a zastavi vypocet
-    	    		 {
-    	    			 return false;
-    	    		 }
-    	    		 System.out.println(hodnota);
-    	    		 
-    	    		 for(Wire propoj : propoje)		//projde vsechny propoje mezi bloky
-    	    		 {
-    	    			 if(propoj.start()== port)	// vystupni port objektu je pripojen k jinemu objektu
-    	    			 {
-    	    				help=propoj.end();
-    	    				help.set_hodnota(hodnota);	
-    	    				//hodnota vystupniho portu je zpropagovana na vstupni port jineho bloku
-    	    			 }
-    	    		 }
-    	    		 
-    	    }
-    	      
-    	     return true;
-      }
+
+	public int step_demo()
+	{
+		Port help;
+		double hodnota;
+		if(krok>=bloky.size())
+		{
+			return 2;
+		}
+		Block objekt = bloky.get(krok);
+		krok=krok+1;
+		objekt.operace();		//nastavi vypoctenou hodnotu na vystupni porty
+		System.out.println(objekt.see_name()+" : "+ objekt.see_poradi());
+		for(Port port : objekt.return_end_ports())	//projde vsechny vystupni porty objektu
+		{
+			hodnota=port.see_hodnota();
+			if(Double.isNaN(hodnota))	//NAN je spatne a zastavi vypocet
+			{
+				return 1;
+			}
+			System.out.println(hodnota);
+
+			for(Wire propoj : propoje)		//projde vsechny propoje mezi bloky
+			{
+				if(propoj.start()== port)	// vystupni port objektu je pripojen k jinemu objektu
+				{
+					help=propoj.end();
+					help.set_hodnota(hodnota);
+					//hodnota vystupniho portu je zpropagovana na vstupni port jineho bloku
+				}
+			}
+
+		}
+
+		return 0;
+	}
       
       /**Provede celkovy vypocet
        * 
@@ -481,6 +508,10 @@ public class Schema implements Serializable{
     	  return null;
       }
 
+	/** Pomocna funkce
+	 *
+	 * @return Vraci index bloku ktery je prave propocitavan
+	 */
       public int get_krok(){
       	return krok;
 	  }

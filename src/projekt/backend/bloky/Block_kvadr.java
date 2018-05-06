@@ -28,17 +28,17 @@ public class Block_kvadr extends Block implements Serializable{
 
     /** Vypocet blocku
      * 
-     * 1.port obvod ctverce
-     * 2.port obsah ctverce
-     * 3.port obsah krychle
+     * 1.port obvod krychle
+     * 2.port plocha krychle
+     * 3.port objem krychle
      */
     public void operace()
     {
 
-    	double result= port_in[0].see_hodnota()*4;
+    	double result= port_in[0].see_hodnota()*12;
             port_out[0].set_hodnota(result);
 
-    	result= Math.pow(port_in[0].see_hodnota(),2.0);
+    	result= Math.pow(port_in[0].see_hodnota(),2.0) * 6;
             port_out[1].set_hodnota(result);
 
     	result= Math.pow(port_in[0].see_hodnota(),3.0);

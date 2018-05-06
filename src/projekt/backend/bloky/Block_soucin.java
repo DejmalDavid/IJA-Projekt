@@ -21,7 +21,7 @@ public class Block_soucin extends Block implements Serializable{
         //konstruktor kazdeho portu
         port_in[0]= new Port(this,"vstup-1",typ);
         port_in[1]= new Port(this,"vstup-2",typ);
-        port_out[0]= new Port(this,"vystup-1",typ);
+        port_out[0]= new Port(this,"vystup-1",hodnoty.Metr_2);
     }
 
     /** Vypocet blocku

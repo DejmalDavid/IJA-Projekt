@@ -2,10 +2,12 @@ package projekt.Frontend;
 
 import java.awt.*;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.Stack;
 
 
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
@@ -21,12 +23,15 @@ import projekt.backend.Block;
 public abstract class GBlock extends StackPane implements Serializable{
 
     Rectangle rect;
+    Label gblock_id;
 
-    public GBlock(){
+    public GBlock(int id){
         super();
         rect = new Rectangle(150,100);
         rect.setFill(Paint.valueOf("#aaaaaa"));
+        gblock_id = new Label ("ID: " + Integer.toString(id));
         this.getChildren().add(rect);
+        this.getChildren().add(gblock_id);
         this.setMaxSize(150.0, 100.0);
         this.setMinSize(150.0, 100.0);
         this.setLayoutX(200);
@@ -83,12 +88,22 @@ public abstract class GBlock extends StackPane implements Serializable{
             }
             GBlock tmp = (GBlock) t.getSource();
             Main.plan1.delete_blok(tmp.see_matchblock().see_name());
-            for (GWire wire : Main.wireList){
-                if (wire.matching_wire.start() == null && wire.matching_wire.end() == null){
+            for (Iterator<GWire> iterator = Main.wireList.iterator();iterator.hasNext();){
+                GWire wire = iterator.next();
+                if (wire.matching_wire.start() == null || wire.matching_wire.end() == null){
                     Main.root.getChildren().remove(wire);
+                    iterator.remove();
                 }
             }
+
             Main.root.getChildren().remove(tmp);
+            Main.blockList.remove(tmp);
+            Main.plan1.poradi_refresh();
+            /*for (GPort port : Main.portList){
+                if (port.getParent() == null){
+                    Main.portList.remove(port);
+                }
+            }*/
 
         }
     };

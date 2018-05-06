@@ -27,14 +27,14 @@ public class GBlock_podil extends GBlock{
     Block block;
 
 
-    public GBlock_podil(double transx, double transy){
-        super();
+    public GBlock_podil(double transx, double transy, int id){
+        super(id);
         Main.id += 1;
-        if(Main.plan1.add_block(Main.id.toString(), "podil", hodnoty.Metr)) {
-            block = Main.plan1.find_block(Main.id.toString());
+        if(Main.plan1.add_block(Integer.toString(id), "podil", hodnoty.Metr)) {
+            block = Main.plan1.find_block(Integer.toString(id));
             op = new Label("/");
             port_out1 = new GPort("Metr", block.return_end_ports()[0]);
-            port_in1 = new GPort("Metr", block.return_start_ports()[0]);
+            port_in1 = new GPort("Metr^2", block.return_start_ports()[0]);
             port_in2 = new GPort("Metr", block.return_start_ports()[1]);
             this.getChildren().addAll(op, port_out1, port_in1, port_in2);
             GBlock_podil.setAlignment(port_out1, Pos.CENTER_RIGHT);

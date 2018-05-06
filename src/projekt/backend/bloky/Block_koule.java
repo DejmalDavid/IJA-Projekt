@@ -30,7 +30,7 @@ public class Block_koule extends Block implements Serializable{
      *
      * 1.port obvod koule
      * 2.port povrch koule
-     * 3.port obsah koule
+     * 3.port objem koule
      */
 
 	public void operace()
@@ -41,7 +41,7 @@ public class Block_koule extends Block implements Serializable{
 		result= Math.pow(port_in[0].see_hodnota(),2)*Math.PI*4;
 	        port_out[1].set_hodnota(result);
 	
-		result= Math.pow(port_in[0].see_hodnota(),2)*Math.PI*4;
+		result= Math.pow(port_in[0].see_hodnota(),2)*Math.PI*4/3;
 	        port_out[2].set_hodnota(result);
 	}
 }

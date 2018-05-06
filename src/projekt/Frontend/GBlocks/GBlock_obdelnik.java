@@ -27,11 +27,11 @@ public class GBlock_obdelnik extends GBlock{
     Block block;
 
 
-    public GBlock_obdelnik(double transx, double transy){
-        super();
+    public GBlock_obdelnik(double transx, double transy, int id){
+        super(id);
         Main.id += 1;
-        if(Main.plan1.add_block(Main.id.toString(), "obdelnik", hodnoty.Metr)) {
-            block = Main.plan1.find_block(Main.id.toString());
+        if(Main.plan1.add_block(Integer.toString(id), "obdelnik", hodnoty.Metr)) {
+            block = Main.plan1.find_block(Integer.toString(id));
             op = new Label("obdelnik");
             port_out1 = new GPort("Metr", block.return_end_ports()[0]);
             port_out2 = new GPort("Metr^2", block.return_end_ports()[1]);

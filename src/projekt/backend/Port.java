@@ -34,7 +34,7 @@ public class Port  implements Serializable{
 	}
 	
 	/**Nastaveni portu
-	 * @param Rodicovsky block
+	 * @param parent Rodicovsky block
 	 * @param nazev portu
 	 * @param typ validni hodnoty
 	 */
@@ -116,6 +116,10 @@ public class Port  implements Serializable{
 
 		}
 		return false;	
+	}
+
+	public boolean connected(){
+		return connect;
 	}
 
 	

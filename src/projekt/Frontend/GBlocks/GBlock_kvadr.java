@@ -27,11 +27,11 @@ public class GBlock_kvadr extends GBlock{
     Block block;
 
 
-    public GBlock_kvadr(double transx, double transy){
-        super();
+    public GBlock_kvadr(double transx, double transy, int id){
+        super(id);
         Main.id += 1;
-        if(Main.plan1.add_block(Main.id.toString(), "kvadr", hodnoty.Metr)) {
-            block = Main.plan1.find_block(Main.id.toString());
+        if(Main.plan1.add_block(Integer.toString(id), "kvadr", hodnoty.Metr)) {
+            block = Main.plan1.find_block(Integer.toString(id));
             op = new Label("kvadr");
             port_out1 = new GPort("Metr", block.return_end_ports()[0]);
             port_in1 = new GPort("Metr", block.return_start_ports()[0]);

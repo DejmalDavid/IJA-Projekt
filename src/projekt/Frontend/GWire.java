@@ -15,7 +15,6 @@ import java.io.Serializable;
  */
 public class GWire extends Line{
 
-    //double startx, starty, endx, endy;
     GBlock start, end;
     double startx, starty, endx, endy;
     double stransx, stransy, etransx, etransy;
@@ -107,6 +106,7 @@ public class GWire extends Line{
             GWire tmp = (GWire) t.getSource();
             Main.plan1.delete_propoj(tmp.matching_wire.see_name());
             Main.root.getChildren().remove(tmp);
+            Main.wireList.remove(tmp);
         }
     };
 

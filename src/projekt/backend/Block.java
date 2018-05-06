@@ -41,9 +41,9 @@ public abstract class Block implements Serializable {
 	 * 
 	 * Vyuziva pouze funkce schema.swap()
 	 * 
-	 * @param poradi
+	 * @param poradi poradi pri vypoctu
 	 */
-	protected void set_poradi(int poradi)
+	public void set_poradi(int poradi)
 	{
 		this.poradi=poradi;
 	}
