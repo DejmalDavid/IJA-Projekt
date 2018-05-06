@@ -13,10 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -62,7 +61,7 @@ public class Main extends Application{
             {
                 FileChooser chooser = new FileChooser();
                 File fil = chooser.showSaveDialog(stage);
-                BufferedWriter file = new BufferedWriter(new FileWriter(fil));
+                BufferedWriter file = new BufferedWriter(new FileWriter(fil, false));
                 String output = "";
                 // Method for serialization of object
                 for(GBlock block : blockList){
@@ -361,6 +360,7 @@ public class Main extends Application{
                 }
                 else {
                     Main.plan1.full_demo();
+
                 }
             }
         });
@@ -385,7 +385,16 @@ public class Main extends Application{
                     alert.showAndWait();
                 }
                 else{
+                    int krok = Main.plan1.get_krok();
                     Main.plan1.step_demo();
+                    for(GBlock block : blockList){
+                        if (block.see_matchblock().see_poradi() == krok){
+                            block.rect.setFill(Paint.valueOf("#add8e6"));
+
+                        }
+                        else
+                            block.rect.setFill(Paint.valueOf("aaaaaa"));
+                    }
                 }
             }
         });
@@ -427,7 +436,19 @@ public class Main extends Application{
             }
         });
 
-        box.getChildren().addAll(btn0,btn1,btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12);
+        Button btn13 = new Button();
+        btn13.setText("Reset");
+        btn13.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Main.plan1.start_mode();
+                for (GBlock block : blockList){
+                    block.rect.setFill(Paint.valueOf("#aaaaaa"));
+                }
+            }
+        });
+
+        box.getChildren().addAll(btn0,btn1,btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13);
         root.getChildren().add(box);
     }
 

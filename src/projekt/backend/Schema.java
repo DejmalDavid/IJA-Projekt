@@ -481,4 +481,8 @@ public class Schema implements Serializable{
     	  return null;
       }
 
+      public int get_krok(){
+      	return krok;
+	  }
+
 }

@@ -48,6 +48,37 @@ public class GWire extends Line{
         endx = bounds_end.getMinX();
         endy = bounds_end.getMaxY();
 
+        if(port_start.getWidth() == 0.0 && port_start.getHeight() == 0.0){
+            this.setStartX(bounds_start.getMaxX() + 150);
+            startx = bounds_start.getMaxX()+150;
+            if(port_start.matching_port.see_nazev().equals("vystup-1")){
+                this.setStartY(bounds_start.getMaxY()+60);
+                starty = bounds_start.getMaxY()+60;
+            }
+            else if(port_start.matching_port.see_nazev().equals("vystup-2")){
+                this.setStartY(bounds_start.getMaxY()+100);
+                starty = bounds_start.getMaxY()+100;
+            }
+            if(port_start.matching_port.see_nazev().equals("vystup-3")){
+                this.setStartY(bounds_start.getMaxY()+20);
+                starty = bounds_start.getMaxY()+20;
+            }
+        }
+        if(port_end.getWidth() == 0.0 && port_end.getHeight() == 0.0){
+            if(port_end.matching_port.see_nazev().equals("vstup-1")){
+                this.setEndY(bounds_end.getMaxY()+60);
+                endy = bounds_end.getMaxY()+60;
+            }
+            else if(port_end.matching_port.see_nazev().equals("vstup-2")){
+                this.setEndY(bounds_end.getMaxY()+100);
+                endy = bounds_end.getMaxY()+100;
+            }
+            if(port_end.matching_port.see_nazev().equals("vstup-3")){
+                this.setEndY(bounds_end.getMaxY()+20);
+                endy = bounds_end.getMaxY()+20;
+            }
+        }
+
         this.setOnMouseClicked(WireClickedHandler);
         t = new Tooltip(Double.toString(start_port.matching_port.see_hodnota()));
         Tooltip.install(this, t);

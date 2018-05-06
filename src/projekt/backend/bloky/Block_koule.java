@@ -27,9 +27,9 @@ public class Block_koule extends Block implements Serializable{
     }
 
     /** Vypocet blocku
-     * 
-     * 1.port obvod kruhu
-     * 2.port obsah kruhu
+     *
+     * 1.port obvod koule
+     * 2.port povrch koule
      * 3.port obsah koule
      */
 
@@ -38,7 +38,7 @@ public class Block_koule extends Block implements Serializable{
 		double result= port_in[0].see_hodnota()*2*Math.PI;
 	        port_out[0].set_hodnota(result);
 	
-		result= Math.pow(port_in[0].see_hodnota(),2)*Math.PI;
+		result= Math.pow(port_in[0].see_hodnota(),2)*Math.PI*4;
 	        port_out[1].set_hodnota(result);
 	
 		result= Math.pow(port_in[0].see_hodnota(),2)*Math.PI*4;
