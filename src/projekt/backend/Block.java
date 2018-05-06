@@ -1,9 +1,11 @@
 package projekt.backend;
 
+import java.io.Serializable;
+
 /** Obecny blok
  * @author David Dejmal (xdejma00)
  */
-public abstract class Block {
+public abstract class Block implements Serializable {
 
 	private String name;
 	protected Port port_in[];	
@@ -26,12 +28,22 @@ public abstract class Block {
 		return name;
 	}
 	
+	/**Vraci poradi bloku ve schematu (index)
+	 * 
+	 * @return poradi
+	 */
 	public Integer see_poradi()
 	{
 		return poradi;
 	}
 	
-	public void set_poradi(int poradi)
+	/**Nastavi poradi bloku
+	 * 
+	 * Vyuziva pouze funkce schema.swap()
+	 * 
+	 * @param poradi
+	 */
+	protected void set_poradi(int poradi)
 	{
 		this.poradi=poradi;
 	}
@@ -45,7 +57,7 @@ public abstract class Block {
 	{
 		for(Port port: port_in)
 		{
-			if (jmeno == port.see_nazev())
+			if (jmeno.equals(port.see_nazev()))
 			{
 				return port;
 			}
@@ -62,7 +74,7 @@ public abstract class Block {
 	{
 		for(Port port: port_out)
 		{
-			if (jmeno == port.see_nazev())
+			if (jmeno.equals(port.see_nazev()))
 			{
 				return port;
 			}
@@ -79,6 +91,10 @@ public abstract class Block {
 		return port_out; 		
 	}
 	
+	/**Vraci pole vstupnich portu
+	 * 
+	 * @return pole vstupnich portu
+	 */
 	public Port[] return_start_ports()
 	{
 		return port_in; 		
@@ -87,8 +103,9 @@ public abstract class Block {
 	
 	public abstract void operace();
 	
+	
 	public int hashCode() {
-		return poradi.hashCode();	
+		return poradi.hashCode();	//poradi je jedinecne vramci shematu
 	}
 	
 	public boolean equals(Object obj)

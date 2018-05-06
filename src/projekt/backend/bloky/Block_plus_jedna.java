@@ -1,14 +1,21 @@
 package projekt.backend.bloky;
 
+import java.io.Serializable;
+
 import projekt.backend.Block;
 import projekt.backend.Port;
-import projekt.hodnoty;
-
-/** Pokusna trida pro ucel 2.ukolu
+import projekt.backend.Port.hodnoty;
+/** 
  * 
  * @author David Dejmal (xdejma00)
+ * pricte jeden metr
  */
-public class Block_plus_jedna extends Block {
+public class Block_plus_jedna extends Block implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public Block_plus_jedna(String name,int poradi) {
 		super(name,poradi);	
@@ -23,8 +30,7 @@ public class Block_plus_jedna extends Block {
 
 	/** Vypocet blocku
 	 * 
-	 * Tato operace musi zarucit ze na kazdy vystupni port bude pridelena hodnota!!!
-	 * 
+	 * pricte jednicku
 	 */
 	public void operace()
 	{

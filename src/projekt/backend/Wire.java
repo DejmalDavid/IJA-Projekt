@@ -1,5 +1,7 @@
 package projekt.backend;
 
+import java.io.Serializable;
+
 /** Predstavuje propoj mezi bloky
  * 
  * Tyto propoje budou ulozeny v globalnim kontejneru
@@ -7,15 +9,16 @@ package projekt.backend;
  * 
  * @author David Dejmal (xdejma00)
  */
-public class Wire {	
+public class Wire  implements Serializable{	
+
 	private Port port_start;	//zacatek
 	private Port port_end;		//konec	
-	private String id;
+	private String name;
 	
 	public Wire() {
 			port_start = null;
 			port_end = null;
-			id = null;
+			name = null;
 	}
 
 	/** Propoji porty 
@@ -44,7 +47,7 @@ public class Wire {
 		port_start=in;
 		port_end=out;
 		port_start.connect=port_end.connect=true;
-		id=port_start.see_parent().see_name()+"-"+port_end.see_parent().see_name();
+		name=port_start.see_parent().see_name()+"-"+port_end.see_parent().see_name();
 		return true;
 	}
 	
@@ -66,9 +69,29 @@ public class Wire {
 		return port_end;
 	}
 	
-	public String see_id()
+	/**Vraci jmeno propoje
+	 * 
+	 * @return jmeno
+	 */
+	public String see_name()
 	{
-		return id;
+		return name;
 	}
+
+    /**Nastavi hodnotu port_start na null
+     *
+     */
+    public void set_port_start_null(){
+        port_start = null;
+    }
+
+    /**Nastavi hodnotu port_end na null
+     *
+     */
+    public void set_port_end_null(){
+        port_end = null;
+    }
+
+
 }
 

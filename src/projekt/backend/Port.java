@@ -1,18 +1,37 @@
 package projekt.backend;
 
-import projekt.hodnoty;
+import java.io.Serializable;
 
 /** Trida simulujici port
  * 
  * @author David Dejmal (xdejma00)
  */
-public class Port {
+public class Port  implements Serializable{
+
 	private Block parent;	
 	private String nazev;
 	private hodnoty typ;
 	protected boolean connect;		//verejny propoj
 	private double hodnota;
-	
+	public enum hodnoty {
+		 Metr ("Metr"),	//delka v metrech
+		 Metr_2 ("Metr^2"),	// plocha v ctverecnich metrech
+		 Metr_3 ("Metr^3");	//objem v metrech krychlovych
+
+		private final String name;
+		private hodnoty(String s) {
+			name = s;
+		}
+
+		public boolean equalsName(String otherName) {
+			// (otherName == null) check is not needed because name.equals(null) returns false
+			return name.equals(otherName);
+		}
+
+		public String toString() {
+			return this.name;
+		}
+	}
 	
 	/**Nastaveni portu
 	 * @param Rodicovsky block

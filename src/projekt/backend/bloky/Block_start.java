@@ -1,10 +1,18 @@
 package projekt.backend.bloky;
 
+import java.io.Serializable;
+
 import projekt.backend.Block;
 import projekt.backend.Port;
-import projekt.hodnoty;
+import projekt.backend.Port.hodnoty;
 
-public class Block_start extends Block {
+/**
+ * 
+ * @author David Dejmal
+ *
+ *vstupni blok
+ */
+public class Block_start extends Block implements Serializable {
 	
 	private double hodnota;
 	
@@ -22,8 +30,7 @@ public class Block_start extends Block {
 
     /** Vypocet blocku
      *
-     * Tato operace musi zarucit ze na kazdy vystupni port bude pridelena hodnota!!!
-     *
+     *Hodnotu v konstruktoru propaguje na vystup
      */
     public void operace()
     {
