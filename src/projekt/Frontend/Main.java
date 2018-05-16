@@ -91,7 +91,8 @@ public class Main extends Application{
                 File fil = chooser.showSaveDialog(stage);
                 BufferedWriter file = new BufferedWriter(new FileWriter(fil, false));
                 String output = "";
-
+                output += "name " + scheme_name.getText() + "\n";
+                
                 for(GBlock block : blockList){
                     if(block instanceof GBlock_start){
                         output += "start ";
@@ -259,6 +260,9 @@ public class Main extends Application{
                                 Double.parseDouble(split[2]), Integer.parseInt(split[3]));
                         loaded_block.see_matchblock().set_poradi(Integer.parseInt(split[4]));
                         root.getChildren().add(loaded_block);
+                    }
+                    else if(split[0].equals("name")){
+                        scheme_name.setText(split[1]);
                     }
                 }
                 Main.plan1.poradnik_refresh();
